@@ -1,3 +1,9 @@
+
+ORIGINAL FILES + RAR WITH CHANGED FILES AS WIN 11 CMAKE -NEED ONLY CHANGE PATH / COULD BE SAME + CHANGED SRC FOLDER AND FILES INSIDE TO MAKE MODULE NOT SPAM CONSOLE WITH TONS OF TEXT
+
+
+
+
 <p align="center">
   <img src="./icon.png" alt="Ollama Chat Module" title="Ollama Chat Module Icon">
 </p>
