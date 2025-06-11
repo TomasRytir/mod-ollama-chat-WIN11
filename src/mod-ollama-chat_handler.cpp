@@ -281,7 +281,16 @@ void PlayerBotChatHandler::ProcessChat(Player* player, uint32_t /*type*/, uint32
                 // Use the QueryManager to submit the query.
                 std::future<std::string> responseFuture = SubmitQuery(prompt);
                 std::string response = responseFuture.get();
-
+                double avgCharsPerSec = 3.0; // avarage speed of human writting
+                double thinkTime = 1.0; // time in seconds to "think" about answer
+                int responseLength = response.size(); // number of symbols in answer
+                double writingTime = responseLength / avgCharsPerSec; // time for write msg in seconds
+                double totalDelay = writingTime + thinkTime; // overall delay
+                //optional jitter for immersion double jitter = ((rand() % 1000) - 500) / 1000.0; // -0.5s až +0.5s
+                //totalDelay += jitter;//
+                if (totalDelay < 0.5) totalDelay = 0.5; // minimum 0.5s
+                td::this_thread::sleep_for(std::chrono::milliseconds((int)(totalDelay * 1000)));
+              
                 // Reacquire pointers by GUID.
                 Player* botPtr = ObjectAccessor::FindPlayer(ObjectGuid(botGuid));
                 Player* senderPtr = ObjectAccessor::FindPlayer(ObjectGuid(senderGuid));
